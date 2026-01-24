@@ -34,6 +34,24 @@
     </nav>
 
     <div class="action-area">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
       <button class="lang-switch active">EN</button>
       <span class="divider">/</span>
       <button class="lang-switch">AR</button>
@@ -49,28 +67,29 @@
     <!-- Spline Background -->
     <iframe src='https://my.spline.design/radialglass-20RYcJn9wbsEb5QEYkazHjpb' frameborder='0' width='100%'
       height='100%' class="spline-bg"></iframe>
+    <img src="assets/images/a3.png" alt="Light Background" class="hero-bg-light">
 
-    <div class="hero-container">
+    <div class="hero-container container">
       <!-- Left Column -->
-      <div class="hero-text">
-        <span class="tagline">BUILDING FUTURE-READY TECHNOLOGY</span>
+      <div class="hero-text reveal-left">
+        <span class="tagline stagger-item">BUILDING FUTURE-READY TECHNOLOGY</span>
 
-        <h1>Smart digital<br>solutions that<br>power business growth</h1>
+        <h1 class="stagger-item">Smart digital<br>solutions that<br>power business growth</h1>
 
-        <p class="hero-desc">
+        <p class="hero-desc stagger-item">
           OFG Tech partners with startups and enterprises to design, develop, and scale
           high-performance web, mobile, and cloud solutions—driving efficiency,
           engagement, and measurable results.
         </p>
 
 
-        <div class="hero-cta">
+        <div class="hero-cta stagger-item">
           <a href="#contact" class="btn-hero-primary">Start Your Project <span class="arrow">→</span></a>
           <a href="#services" class="btn-hero-secondary">Our Services <span class="play-icon">▶</span></a>
 
         </div>
 
-        <div class="social-proof">
+        <div class="social-proof stagger-item">
           <div class="avatars">
             <div class="avatar" style="background-image: url('https://i.pravatar.cc/100?img=33')"></div>
             <div class="avatar" style="background-image: url('https://i.pravatar.cc/100?img=47')"></div>
@@ -86,6 +105,7 @@
       <!-- Right Column -->
       <div class="hero-image-wrapper">
         <img src="assets/images/dashboard-hero.png" alt="OFG Tech Dashboard Interface" class="main-image">
+
 
         <!-- Floating Stat: Project Delivery -->
         <div class="stat-card top-right">
@@ -115,9 +135,9 @@
     </div>
 
     <!-- Footer Brand Strip -->
-    <div class="brand-strip">
-      <p>Delivering intelligent AI-powered solutions</p>
-      <div class="brand-logos">
+    <div class="brand-strip reveal">
+      <p class="stagger-item">Delivering intelligent AI-powered solutions</p>
+      <div class="brand-logos stagger-item">
         <!-- <span>⚡ Nexus Labs</span>
         <span>🚀 Velocity</span>
         <span>🛡 Fortress</span>
@@ -247,11 +267,13 @@
   <!-- OFG Tech Services Section -->
   <section class="services-section" id="services">
 
-    <div class="services-container">
+    <div class="services-container container">
       <!-- Section Header -->
-      <div class="services-header">
-        <span class="services-label">WHAT WE DO</span>
-        <h2 class="services-title">Strategy, design, and engineering — end to end</h2>
+      <div class="services-header reveal">
+        <span class="services-label stagger-item">OUR SERVICES</span>
+        <h2 class="services-title stagger-item">
+          Digital solutions that power growth — end to end
+        </h2>
       </div>
 
       <!-- Services Grid -->
@@ -555,15 +577,17 @@
 
   <!-- Trusted Clients Section -->
   <section class="trusted-section" id="clients">
-    <div class="trusted-container">
-      <div class="trusted-header">
-        <span class="trusted-label">Trusted Worldwide</span>
-        <h2 class="trusted-title">Trusted by Leading Companies</h2>
-        <p class="trusted-subtitle">Partnering with innovative brands across technology, finance, and enterprise
-          sectors.</p>
+    <div class="trusted-container container">
+      <div class="trusted-header reveal">
+        <span class="trusted-label stagger-item">OUR CLIENTS</span>
+        <h2 class="trusted-title stagger-item">Trusted by Growing & Global Brands</h2>
+        <p class="trusted-subtitle stagger-item">
+          Delivering reliable technology solutions for startups, enterprises, and industry leaders worldwide.
+        </p>
+
       </div>
 
-      <div class="logo-carousel">
+      <div class="logo-carousel scale-in">
         <div class="logo-track" id="logo-track">
           <!-- Logos will be injected via JS for cleaner "auto-loading" logic -->
         </div>
@@ -572,6 +596,86 @@
     <div class="section-divider"></div>
   </section>
 
+
+  <footer class="site-footer">
+    <div class="footer-card-wrapper container reveal">
+      <div class="footer-card">
+        <div class="footer-main">
+          <!-- Left side: Brand and Subscribe -->
+          <div class="footer-brand-section reveal-left">
+            <div class="footer-logo-box stagger-item">
+              <img src="assets/images/logo.png" alt="OFG TECH Logo" class="footer-logo">
+            </div>
+            <p class="footer-description stagger-item">
+              Transforming your digital vision into high-performance reality with AI-powered solutions that scale your
+              business.
+            </p>
+
+            <form class="footer-subscribe stagger-item">
+              <div class="subscribe-input-group">
+                <input type="email" placeholder="Your email" class="subscribe-input">
+                <button type="submit" class="subscribe-btn">
+                  Subscribe <span class="send-icon">🚀</span>
+                </button>
+              </div>
+              <p class="subscribe-note">Monthly updates. No spam.</p>
+            </form>
+          </div>
+
+          <!-- Right side: Navigation Links -->
+          <div class="footer-nav-section reveal-right">
+            <div class="footer-col stagger-item">
+              <h4 class="footer-title">Product</h4>
+              <a href="#" class="footer-link">Features</a>
+              <a href="#" class="footer-link">How it works</a>
+              <a href="#" class="footer-link">Pricing</a>
+            </div>
+            <div class="footer-col stagger-item">
+              <h4 class="footer-title">Company</h4>
+              <a href="#" class="footer-link">About</a>
+              <a href="#" class="footer-link">Blog</a>
+              <a href="#" class="footer-link">Careers</a>
+            </div>
+            <div class="footer-col stagger-item">
+              <h4 class="footer-title">Legal</h4>
+              <a href="#" class="footer-link">Privacy</a>
+              <a href="#" class="footer-link">Terms</a>
+              <a href="#" class="footer-link">Contact</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider stagger-item"></div>
+
+        <div class="footer-bottom-bar reveal">
+          <p class="footer-copyright stagger-item">&copy; 2026 OFG TECH. All rights reserved.</p>
+          <div class="footer-social-icons stagger-item">
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                </path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="js/script.js"></script>
 </body>

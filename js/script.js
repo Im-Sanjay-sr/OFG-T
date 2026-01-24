@@ -185,23 +185,24 @@ const initTrustedSection = () => {
 
     if (!track || !section) return;
 
-    // List of images from /image/Client/
-    const clientLogos = [
-        'logo0.png', 'logo1.png', 'logo2.png', 'logo3.png',
-        'logo4.png', 'logo5.png', 'logo6.png', 'logo7.png', 'logo8.png'
-    ];
+    // We use numbers 0 to 8 
+    const logoIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    const isLightDefault = document.body.classList.contains('light-theme');
 
     // Function to create logo elements
-    const createLogos = (logos) => {
-        logos.forEach(logo => {
+    const createLogos = (indices, isLight) => {
+        indices.forEach(index => {
             const container = document.createElement('div');
             container.className = 'logo-item';
 
             const img = document.createElement('img');
-            img.src = `assets/images/clients/${logo}`;
+            // Use logo-m# for light, logo# for dark
+            const logoName = isLight ? `logo-m${index}.png` : `logo${index}.png`;
+            img.src = `assets/images/clients/${logoName}`;
             img.alt = 'Client Logo';
             img.className = 'client-logo';
             img.loading = 'lazy';
+            img.setAttribute('data-index', index); // Store index for easy updating
 
             container.appendChild(img);
             track.appendChild(container);
@@ -209,10 +210,10 @@ const initTrustedSection = () => {
     };
 
     // Initial load
-    createLogos(clientLogos);
+    createLogos(logoIndices, isLightDefault);
 
     // Clone once for seamless infinite scroll
-    createLogos(clientLogos);
+    createLogos(logoIndices, isLightDefault);
 
     // Add LTR class for left-to-right motion
     track.classList.add('ltr');
@@ -231,8 +232,138 @@ const initTrustedSection = () => {
     revealOnScroll(); // Check once on init
 };
 
+// Function to update client logos when theme changes
+const updateClientLogos = (isLight) => {
+    const logos = document.querySelectorAll('.client-logo');
+    logos.forEach(img => {
+        const index = img.getAttribute('data-index');
+        if (index !== null) {
+            const logoName = isLight ? `logo-m${index}.png` : `logo${index}.png`;
+            img.src = `assets/images/clients/${logoName}`;
+        }
+    });
+};
+
 // Initialize newly added section
 document.addEventListener('DOMContentLoaded', () => {
+    initThemeToggle();
     initTrustedSection();
+    initScrollReveal();
+    initMagneticButtons();
+    initHeroParallax();
 });
 
+// =========================================
+// Advanced Visual Effects
+// =========================================
+
+/* 1. Scroll Reveal Logic */
+const initScrollReveal = () => {
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .scale-in');
+
+    revealElements.forEach(el => {
+        // Assign stagger indices to children if they have stagger-item class
+        const staggers = el.querySelectorAll('.stagger-item');
+        staggers.forEach((item, index) => {
+            item.style.setProperty('--stagger-index', index);
+        });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+};
+
+/* 2. Magnetic Buttons Effect */
+const initMagneticButtons = () => {
+    const buttons = document.querySelectorAll('.btn-hero-primary, .btn-hero-secondary, .btn-primary, .btn-services');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = `translate(0px, 0px)`;
+        });
+    });
+};
+
+/* 3. Subtle Hero Parallax */
+const initHeroParallax = () => {
+    const hero = document.querySelector('.hero-section');
+    const mainImage = document.querySelector('.main-image');
+    const statCards = document.querySelectorAll('.stat-card');
+
+    if (!hero) return;
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+
+        // Parallax image
+        if (mainImage) {
+            mainImage.style.transform = `translateY(${scrolled * 0.1}px)`;
+        }
+
+        // Stats drift at different speeds
+        statCards.forEach((card, i) => {
+            const speed = (i + 1) * 0.15;
+            card.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+};
+
+// =========================================
+// Theme Toggle Functionality
+// =========================================
+
+const initThemeToggle = () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const navLogo = document.querySelector('.nav-logo');
+    const footerLogo = document.querySelector('.footer-logo');
+
+    // Logo paths
+    const DARK_LOGO = 'assets/images/logo.png';
+    const LIGHT_LOGO = 'assets/images/logo-light.png';
+
+    // Function to update logos
+    const updateLogos = (isLight) => {
+        const logoSrc = isLight ? LIGHT_LOGO : DARK_LOGO;
+        if (navLogo) navLogo.src = logoSrc;
+        if (footerLogo) footerLogo.src = logoSrc;
+        updateClientLogos(isLight);
+    };
+
+    // Check for saved theme preference or default to dark
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+
+    // Apply saved theme on load
+    if (currentTheme === 'light') {
+        body.classList.add('light-theme');
+        updateLogos(true);
+    }
+
+    // Toggle theme on button click
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            const isLight = body.classList.contains('light-theme');
+            updateLogos(isLight);
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+    }
+};
