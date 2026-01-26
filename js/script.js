@@ -251,7 +251,188 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initMagneticButtons();
     initHeroParallax();
+    initSecurityFlow();
 });
+
+// =========================================
+// Security Flow Animation
+// =========================================
+const initSecurityFlow = () => {
+    const canvas = document.getElementById('flow-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    // Config
+    const particleCount = 12; // Particles per line
+    const speed = 0.003; // Movement speed
+    let particles = [];
+
+    // Theme colors
+    let lineColor = 'rgba(255, 255, 255, 0.1)';
+    let particleColor = '#ffffff';
+
+    const resize = () => {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+    };
+
+    // Initialize particles
+    // We will have 3 lines from left and 3 lines from right
+    // Lines converge to center (width/2, height/2)
+    // Structure: { t: 0-1, lineIndex: 0-5, type: 'code'|'cloud'|'database'|'chip' }
+
+    const initParticles = () => {
+        particles = [];
+        const types = ['code', 'cloud', 'database', 'chip'];
+        for (let i = 0; i < 6; i++) {
+            for (let j = 0; j < particleCount; j++) {
+                particles.push({
+                    t: Math.random(), // Start position 0-1
+                    lineIndex: i, // Which line
+                    type: types[Math.floor(Math.random() * types.length)],
+                    size: 10 + Math.random() * 8
+                });
+            }
+        }
+    };
+
+    const drawLine = (p0, p1, p2, p3) => {
+        ctx.beginPath();
+        ctx.moveTo(p0.x, p0.y);
+        ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+        ctx.stroke();
+    };
+
+    // Calculate point on bezier cubic curve
+    const getBezierPoint = (t, p0, p1, p2, p3) => {
+        const cX = 3 * (p1.x - p0.x);
+        const bX = 3 * (p2.x - p1.x) - cX;
+        const aX = p3.x - p0.x - cX - bX;
+
+        const cY = 3 * (p1.y - p0.y);
+        const bY = 3 * (p2.y - p1.y) - cY;
+        const aY = p3.y - p0.y - cY - bY;
+
+        const x = (aX * Math.pow(t, 3)) + (bX * Math.pow(t, 2)) + (cX * t) + p0.x;
+        const y = (aY * Math.pow(t, 3)) + (bY * Math.pow(t, 2)) + (cY * t) + p0.y;
+
+        return { x, y };
+    };
+
+    const drawShape = (x, y, size, type) => {
+        ctx.beginPath();
+        const s = size;
+        const h = size / 2;
+
+        if (type === 'code') {
+            // Angle brackets < >
+            ctx.moveTo(x - h, y);
+            ctx.lineTo(x - h / 2, y - h);
+            ctx.moveTo(x - h, y);
+            ctx.lineTo(x - h / 2, y + h);
+
+            ctx.moveTo(x + h, y);
+            ctx.lineTo(x + h / 2, y - h);
+            ctx.moveTo(x + h, y);
+            ctx.lineTo(x + h / 2, y + h);
+            ctx.stroke();
+        } else if (type === 'cloud') {
+            // Simple cloud shape
+            ctx.arc(x - h / 2, y, h / 2, Math.PI * 0.5, Math.PI * 1.5);
+            ctx.arc(x, y - h / 2, h / 2, Math.PI * 1, Math.PI * 2);
+            ctx.arc(x + h / 2, y, h / 2, Math.PI * 1.5, Math.PI * 0.5);
+            ctx.lineTo(x - h / 2, y + h / 4);
+            ctx.stroke();
+        } else if (type === 'database') {
+            // Cylinder shape
+            ctx.ellipse(x, y - h / 2, h, h / 3, 0, 0, Math.PI * 2);
+            ctx.moveTo(x - h, y - h / 2);
+            ctx.lineTo(x - h, y + h / 2);
+            ctx.ellipse(x, y + h / 2, h, h / 3, 0, 0, Math.PI);
+            ctx.moveTo(x + h, y + h / 2);
+            ctx.lineTo(x + h, y - h / 2);
+            ctx.stroke();
+        } else if (type === 'chip') {
+            // Modern chip icon
+            ctx.rect(x - h, y - h, s, s);
+            // Internal nodes
+            ctx.moveTo(x - h, y); ctx.lineTo(x - h - 4, y);
+            ctx.moveTo(x + h, y); ctx.lineTo(x + h + 4, y);
+            ctx.moveTo(x, y - h); ctx.lineTo(x, y - h - 4);
+            ctx.moveTo(x, y + h); ctx.lineTo(x, y + h + 4);
+            ctx.stroke();
+        }
+    };
+
+    const animate = () => {
+        // Updated colors based on theme
+        const isLight = document.body.classList.contains('light-theme');
+        lineColor = isLight ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)';
+        particleColor = isLight ? '#0a0f1d' : '#ffffff';
+
+        ctx.clearRect(0, 0, width, height);
+
+        const centerX = width / 2;
+        const centerY = height / 2;
+
+        // Define Paths
+        // Left Lines (Starting from left edge)
+        const lines = [
+            // Left Top
+            { s: { x: 0, y: height * 0.2 }, c1: { x: width * 0.2, y: height * 0.2 }, c2: { x: width * 0.3, y: centerY }, e: { x: centerX - 60, y: centerY } },
+            // Left Mid
+            { s: { x: 0, y: height * 0.5 }, c1: { x: width * 0.1, y: height * 0.5 }, c2: { x: width * 0.3, y: centerY }, e: { x: centerX - 60, y: centerY } },
+            // Left Bottom
+            { s: { x: 0, y: height * 0.8 }, c1: { x: width * 0.2, y: height * 0.8 }, c2: { x: width * 0.3, y: centerY }, e: { x: centerX - 60, y: centerY } },
+
+            // Right Lines (Starting from right edge)
+            // Right Top
+            { s: { x: width, y: height * 0.2 }, c1: { x: width * 0.8, y: height * 0.2 }, c2: { x: width * 0.7, y: centerY }, e: { x: centerX + 60, y: centerY } },
+            // Right Mid
+            { s: { x: width, y: height * 0.5 }, c1: { x: width * 0.9, y: height * 0.5 }, c2: { x: width * 0.7, y: centerY }, e: { x: centerX + 60, y: centerY } },
+            // Right Bottom
+            { s: { x: width, y: height * 0.8 }, c1: { x: width * 0.8, y: height * 0.8 }, c2: { x: width * 0.7, y: centerY }, e: { x: centerX + 60, y: centerY } }
+        ];
+
+        // Draw Lines
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = 1;
+        lines.forEach(l => drawLine(l.s, l.c1, l.c2, l.e));
+
+        // Update and Draw Particles
+        ctx.strokeStyle = particleColor;
+        ctx.lineWidth = 1.5;
+
+        particles.forEach(p => {
+            // Move particle
+            p.t += speed;
+            if (p.t > 1) p.t = 0;
+
+            const line = lines[p.lineIndex];
+            const pos = getBezierPoint(p.t, line.s, line.c1, line.c2, line.e);
+
+            // Determine opacity based on distance to center to fade out
+            // Closer to 1 (end) -> fade out
+            let alpha = 1;
+            if (p.t > 0.8) alpha = 1 - (p.t - 0.8) * 5;
+            if (p.t < 0.1) alpha = p.t * 10;
+
+            ctx.globalAlpha = alpha;
+            drawShape(pos.x, pos.y, p.size, p.type);
+            ctx.globalAlpha = 1;
+        });
+
+        requestAnimationFrame(animate);
+    };
+
+    resize();
+    initParticles();
+    animate();
+
+    window.addEventListener('resize', resize);
+};
 
 // =========================================
 // Advanced Visual Effects

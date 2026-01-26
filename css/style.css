@@ -318,11 +318,18 @@ body.light-theme .moon-icon {
   align-items: center;
   justify-content: center;
   padding-top: 80px;
-  padding-bottom: 150px;
+  padding-bottom: 180px;
   /* Space for floating header */
   overflow: hidden;
   z-index: 50;
   /* Above sticky container initially */
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 2000px) {
+  .hero-section {
+    padding-top: 150px;
+    padding-bottom: 180px;
+  }
 }
 
 .spline-bg {
@@ -1393,7 +1400,7 @@ body.light-theme .trusted-title {
   max-width: 100%;
   max-height: 100%;
   width: auto;
-  height: clamp(45px, 8vh, 100px);
+  height: clamp(45px, 20vh, 100px);
   /* Increased minimum from 30px */
   object-fit: contain;
   object-position: center;
@@ -2162,4 +2169,124 @@ body.light-theme .social-icon {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* =========================================
+   Security Flow Section (Audited. Open-source.)
+   ========================================= */
+.security-section {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-color);
+  z-index: 60;
+}
+
+#flow-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.security-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.security-title {
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.gradient-text-purple {
+  /* background: linear-gradient(135deg, #7b61ff 0%, #a855f7 100%); */
+  background: linear-gradient(135deg, #ff915c 0%, #bb3d00 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-security {
+  background: var(--text-primary);
+  color: var(--bg-color);
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.btn-security::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-security:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.btn-security:hover::before {
+  transform: translateX(100%);
+}
+
+/* Light Theme Adjustments for this section */
+body.light-theme .security-section {
+  background: #ffffff;
+}
+
+body.light-theme .security-title {
+  color: #0a0f1d;
+}
+
+body.light-theme .btn-security {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+body.light-theme .gradient-text-purple {
+  /* background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); */
+  background: linear-gradient(135deg, #ff915c 0%, #bb3d00 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
