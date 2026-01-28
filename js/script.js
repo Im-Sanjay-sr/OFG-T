@@ -37,16 +37,15 @@ const updateCanvasSize = () => {
 
 /* 1. Preloading */
 const preloadImages = () => {
+    let criticalLoaded = false;
+    const CRITICAL_FRAMES = 5; // Start as soon as first 5 frames are in
+
     for (let i = 1; i <= FRAME_COUNT; i++) {
         const paddedIndex = i.toString().padStart(3, '0');
         const img = new Image();
 
         const tryLoad = (extIndex = 0) => {
-            if (extIndex >= IMAGE_EXTENSIONS.length) {
-                console.error(`Frame ${paddedIndex} not found in any supported format`);
-                return;
-            }
-
+            if (extIndex >= IMAGE_EXTENSIONS.length) return;
             img.src = `${IMAGE_PATH_PREFIX}${paddedIndex}${IMAGE_EXTENSIONS[extIndex]}`;
         };
 
@@ -57,20 +56,18 @@ const preloadImages = () => {
             const percent = Math.floor((imagesLoaded / FRAME_COUNT) * 100);
             progressText.innerText = `${percent}%`;
 
-            if (imagesLoaded === FRAME_COUNT) {
+            // Start experience as soon as first few frames are ready
+            if (imagesLoaded >= CRITICAL_FRAMES && !criticalLoaded) {
+                criticalLoaded = true;
                 startExperience();
             }
         };
 
         img.onerror = () => {
-            // Try next extension if current fails
-            const currentExtIndex = IMAGE_EXTENSIONS.findIndex(ext =>
-                img.src.endsWith(ext)
-            );
+            const currentExtIndex = IMAGE_EXTENSIONS.findIndex(ext => img.src.endsWith(ext));
             tryLoad(currentExtIndex + 1);
         };
 
-        // Start trying extensions
         tryLoad();
     }
 };
@@ -172,6 +169,27 @@ const startExperience = () => {
     updateTextOverlays(0);
 };
 
+/* 7. Back to Top Logic */
+const initBackToTop = () => {
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (!backToTopBtn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            backToTopBtn.classList.add('active');
+        } else {
+            backToTopBtn.classList.remove('active');
+        }
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+};
+
 // Start
 preloadImages();
 
@@ -252,7 +270,86 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     initHeroParallax();
     initSecurityFlow();
+    initFAQ();
+    initWhatsApp();
+    initProjectsScroll();
+    initContactForm();
+    initBackToTop();
 });
+
+/* 6. Contact Form Logic */
+const initContactForm = () => {
+    const form = document.getElementById('project-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Basic feedback for the user
+        const btn = form.querySelector('.btn-submit span');
+        const originalText = btn.textContent;
+
+        btn.textContent = 'SENDING...';
+        btn.parentElement.classList.add('sending');
+
+        // Simulate network delay
+        setTimeout(() => {
+            btn.textContent = 'MESSAGE SENT! ✓';
+            btn.parentElement.style.background = '#00c853';
+            btn.parentElement.style.boxShadow = '0 0 20px rgba(0, 200, 83, 0.4)';
+            form.reset();
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.parentElement.style.background = '';
+                btn.parentElement.style.boxShadow = '';
+                btn.parentElement.classList.remove('sending');
+            }, 3000);
+        }, 1500);
+    });
+};
+
+// =========================================
+// OFG Tech Projects Horizontal Scroll
+// =========================================
+
+const initProjectsScroll = () => {
+    const section = document.querySelector('.projects-section');
+    const track = document.getElementById('projects-track');
+
+    if (!section || !track) return;
+
+    const handleProjectsScroll = () => {
+        // Only run on desktop screens (width > 800px)
+        if (window.innerWidth <= 800) {
+            track.style.transform = 'none';
+            return;
+        }
+
+        const sectionRect = section.getBoundingClientRect();
+        const totalScrollable = section.offsetHeight - window.innerHeight;
+
+        // Progress: 0 (start of section) to 1 (end of section)
+        let progress = -sectionRect.top / totalScrollable;
+        progress = Math.max(0, Math.min(1, progress));
+
+        // Calculate maximum translation (total track width minus container width)
+        const trackWidth = track.scrollWidth;
+        const containerWidth = track.parentElement.clientWidth;
+        const maxTranslate = trackWidth - containerWidth;
+
+        // Apply translation
+        const translateX = -progress * maxTranslate;
+
+        window.requestAnimationFrame(() => {
+            track.style.transform = `translateX(${translateX}px)`;
+        });
+    };
+
+    window.addEventListener('scroll', handleProjectsScroll, { passive: true });
+    window.addEventListener('resize', handleProjectsScroll);
+    handleProjectsScroll(); // Initial check
+};
 
 // =========================================
 // Security Flow Animation
@@ -265,8 +362,8 @@ const initSecurityFlow = () => {
     let width, height;
 
     // Config
-    const particleCount = 12; // Particles per line
-    const speed = 0.003; // Movement speed
+    const particleCount = 8; // Exactly 5 particles total
+    const speed = 0.003; // Slightly faster for fewer shapes
     let particles = [];
 
     // Theme colors
@@ -279,22 +376,18 @@ const initSecurityFlow = () => {
     };
 
     // Initialize particles
-    // We will have 3 lines from left and 3 lines from right
-    // Lines converge to center (width/2, height/2)
-    // Structure: { t: 0-1, lineIndex: 0-5, type: 'code'|'cloud'|'database'|'chip' }
-
     const initParticles = () => {
         particles = [];
         const types = ['code', 'cloud', 'database', 'chip'];
-        for (let i = 0; i < 6; i++) {
-            for (let j = 0; j < particleCount; j++) {
-                particles.push({
-                    t: Math.random(), // Start position 0-1
-                    lineIndex: i, // Which line
-                    type: types[Math.floor(Math.random() * types.length)],
-                    size: 10 + Math.random() * 8
-                });
-            }
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                t: Math.random(), // Start position 0-1
+                lineIndex: Math.floor(Math.random() * 6), // Random line
+                type: types[Math.floor(Math.random() * types.length)],
+                size: 12 + Math.random() * 8,
+                rotation: Math.random() * Math.PI * 2,
+                rotationSpeed: (Math.random() - 0.5) * 0.05
+            });
         }
     };
 
@@ -321,49 +414,56 @@ const initSecurityFlow = () => {
         return { x, y };
     };
 
-    const drawShape = (x, y, size, type) => {
+    const drawShape = (x, y, size, type, rotation) => {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
+
         ctx.beginPath();
         const s = size;
         const h = size / 2;
 
         if (type === 'code') {
             // Angle brackets < >
-            ctx.moveTo(x - h, y);
-            ctx.lineTo(x - h / 2, y - h);
-            ctx.moveTo(x - h, y);
-            ctx.lineTo(x - h / 2, y + h);
+            // Left bracket
+            ctx.moveTo(-h, 0);
+            ctx.lineTo(-h / 2, -h);
+            ctx.moveTo(-h, 0);
+            ctx.lineTo(-h / 2, h);
 
-            ctx.moveTo(x + h, y);
-            ctx.lineTo(x + h / 2, y - h);
-            ctx.moveTo(x + h, y);
-            ctx.lineTo(x + h / 2, y + h);
+            // Right bracket
+            ctx.moveTo(h, 0);
+            ctx.lineTo(h / 2, -h);
+            ctx.moveTo(h, 0);
+            ctx.lineTo(h / 2, h);
             ctx.stroke();
         } else if (type === 'cloud') {
-            // Simple cloud shape
-            ctx.arc(x - h / 2, y, h / 2, Math.PI * 0.5, Math.PI * 1.5);
-            ctx.arc(x, y - h / 2, h / 2, Math.PI * 1, Math.PI * 2);
-            ctx.arc(x + h / 2, y, h / 2, Math.PI * 1.5, Math.PI * 0.5);
-            ctx.lineTo(x - h / 2, y + h / 4);
+            // Simple cloud shape centered at (0,0)
+            ctx.arc(-h / 2, 0, h / 2, Math.PI * 0.5, Math.PI * 1.5);
+            ctx.arc(0, -h / 2, h / 2, Math.PI * 1, Math.PI * 2);
+            ctx.arc(h / 2, 0, h / 2, Math.PI * 1.5, Math.PI * 0.5);
+            ctx.lineTo(-h / 2, h / 4);
             ctx.stroke();
         } else if (type === 'database') {
-            // Cylinder shape
-            ctx.ellipse(x, y - h / 2, h, h / 3, 0, 0, Math.PI * 2);
-            ctx.moveTo(x - h, y - h / 2);
-            ctx.lineTo(x - h, y + h / 2);
-            ctx.ellipse(x, y + h / 2, h, h / 3, 0, 0, Math.PI);
-            ctx.moveTo(x + h, y + h / 2);
-            ctx.lineTo(x + h, y - h / 2);
+            // Cylinder shape centered at (0,0)
+            ctx.ellipse(0, -h / 2, h, h / 3, 0, 0, Math.PI * 2);
+            ctx.moveTo(-h, -h / 2);
+            ctx.lineTo(-h, h / 2);
+            ctx.ellipse(0, h / 2, h, h / 3, 0, 0, Math.PI);
+            ctx.moveTo(h, h / 2);
+            ctx.lineTo(h, -h / 2);
             ctx.stroke();
         } else if (type === 'chip') {
-            // Modern chip icon
-            ctx.rect(x - h, y - h, s, s);
+            // Modern chip icon centered at (0,0)
+            ctx.rect(-h, -h, s, s);
             // Internal nodes
-            ctx.moveTo(x - h, y); ctx.lineTo(x - h - 4, y);
-            ctx.moveTo(x + h, y); ctx.lineTo(x + h + 4, y);
-            ctx.moveTo(x, y - h); ctx.lineTo(x, y - h - 4);
-            ctx.moveTo(x, y + h); ctx.lineTo(x, y + h + 4);
+            ctx.moveTo(-h, 0); ctx.lineTo(-h - 4, 0);
+            ctx.moveTo(h, 0); ctx.lineTo(h + 4, 0);
+            ctx.moveTo(0, -h); ctx.lineTo(0, -h - 4);
+            ctx.moveTo(0, h); ctx.lineTo(0, h + 4);
             ctx.stroke();
         }
+        ctx.restore();
     };
 
     const animate = () => {
@@ -374,27 +474,37 @@ const initSecurityFlow = () => {
 
         ctx.clearRect(0, 0, width, height);
 
+        const isMobile = width < 768;
         const centerX = width / 2;
-        const centerY = height / 2;
+        const centerY = isMobile ? height * 0.88 : height / 2;
+        const targetOffset = 40;
 
-        // Define Paths
-        // Left Lines (Starting from left edge)
-        const lines = [
-            // Left Top
-            { s: { x: 0, y: height * 0.2 }, c1: { x: width * 0.2, y: height * 0.2 }, c2: { x: width * 0.3, y: centerY }, e: { x: centerX - 60, y: centerY } },
-            // Left Mid
-            { s: { x: 0, y: height * 0.5 }, c1: { x: width * 0.1, y: height * 0.5 }, c2: { x: width * 0.3, y: centerY }, e: { x: centerX - 60, y: centerY } },
-            // Left Bottom
-            { s: { x: 0, y: height * 0.8 }, c1: { x: width * 0.2, y: height * 0.8 }, c2: { x: width * 0.3, y: centerY }, e: { x: centerX - 60, y: centerY } },
-
-            // Right Lines (Starting from right edge)
-            // Right Top
-            { s: { x: width, y: height * 0.2 }, c1: { x: width * 0.8, y: height * 0.2 }, c2: { x: width * 0.7, y: centerY }, e: { x: centerX + 60, y: centerY } },
-            // Right Mid
-            { s: { x: width, y: height * 0.5 }, c1: { x: width * 0.9, y: height * 0.5 }, c2: { x: width * 0.7, y: centerY }, e: { x: centerX + 60, y: centerY } },
-            // Right Bottom
-            { s: { x: width, y: height * 0.8 }, c1: { x: width * 0.8, y: height * 0.8 }, c2: { x: width * 0.7, y: centerY }, e: { x: centerX + 60, y: centerY } }
-        ];
+        let lines = [];
+        if (isMobile) {
+            // Mobile Vertical Paths (From top to bottom button)
+            lines = [
+                // Top-left arc
+                { s: { x: width * 0.05, y: height * 0.1 }, c1: { x: width * 0.05, y: height * 0.5 }, c2: { x: centerX * 0.5, y: centerY }, e: { x: centerX, y: centerY - targetOffset } },
+                // Top-right arc
+                { s: { x: width * 0.95, y: height * 0.1 }, c1: { x: width * 0.95, y: height * 0.5 }, c2: { x: width - centerX * 0.5, y: centerY }, e: { x: centerX, y: centerY - targetOffset } },
+                // Mid-left curve
+                { s: { x: 0, y: height * 0.5 }, c1: { x: width * 0.2, y: height * 0.6 }, c2: { x: centerX * 0.8, y: height * 0.8 }, e: { x: centerX, y: centerY - targetOffset } },
+                // Mid-right curve
+                { s: { x: width, y: height * 0.5 }, c1: { x: width * 0.8, y: height * 0.6 }, c2: { x: width - centerX * 0.8, y: height * 0.8 }, e: { x: centerX, y: centerY - targetOffset } },
+                // Direct Center Top
+                { s: { x: centerX, y: height * 0.2 }, c1: { x: centerX, y: height * 0.4 }, c2: { x: centerX, y: height * 0.6 }, e: { x: centerX, y: centerY - targetOffset } }
+            ];
+        } else {
+            // Desktop Horizontal Paths
+            lines = [
+                { s: { x: 0, y: height * 0.2 }, c1: { x: width * 0.2, y: height * 0.2 }, c2: { x: width * 0.3, y: centerY }, e: { x: centerX - 60, y: centerY } },
+                { s: { x: 0, y: height * 0.5 }, c1: { x: width * 0.1, y: height * 0.5 }, c2: { x: width * 0.3, y: centerY }, e: { x: centerX - 60, y: centerY } },
+                { s: { x: 0, y: height * 0.8 }, c1: { x: width * 0.2, y: height * 0.8 }, c2: { x: width * 0.3, y: centerY }, e: { x: centerX - 60, y: centerY } },
+                { s: { x: width, y: height * 0.2 }, c1: { x: width * 0.8, y: height * 0.2 }, c2: { x: width * 0.7, y: centerY }, e: { x: centerX + 60, y: centerY } },
+                { s: { x: width, y: height * 0.5 }, c1: { x: width * 0.9, y: height * 0.5 }, c2: { x: width * 0.7, y: centerY }, e: { x: centerX + 60, y: centerY } },
+                { s: { x: width, y: height * 0.8 }, c1: { x: width * 0.8, y: height * 0.8 }, c2: { x: width * 0.7, y: centerY }, e: { x: centerX + 60, y: centerY } }
+            ];
+        }
 
         // Draw Lines
         ctx.strokeStyle = lineColor;
@@ -406,21 +516,29 @@ const initSecurityFlow = () => {
         ctx.lineWidth = 1.5;
 
         particles.forEach(p => {
+            // Loop adjustment in case lineIndex is out of bounds after switch
+            if (p.lineIndex >= lines.length) p.lineIndex = Math.floor(Math.random() * lines.length);
+
             // Move particle
             p.t += speed;
-            if (p.t > 1) p.t = 0;
+            if (p.t > 1) {
+                p.t = 0;
+                p.lineIndex = Math.floor(Math.random() * lines.length);
+            }
+
+            // Update rotation
+            p.rotation += p.rotationSpeed;
 
             const line = lines[p.lineIndex];
             const pos = getBezierPoint(p.t, line.s, line.c1, line.c2, line.e);
 
             // Determine opacity based on distance to center to fade out
-            // Closer to 1 (end) -> fade out
             let alpha = 1;
             if (p.t > 0.8) alpha = 1 - (p.t - 0.8) * 5;
             if (p.t < 0.1) alpha = p.t * 10;
 
-            ctx.globalAlpha = alpha;
-            drawShape(pos.x, pos.y, p.size, p.type);
+            ctx.globalAlpha = Math.max(0, alpha);
+            drawShape(pos.x, pos.y, p.size, p.type, p.rotation);
             ctx.globalAlpha = 1;
         });
 
@@ -466,7 +584,7 @@ const initScrollReveal = () => {
 
 /* 2. Magnetic Buttons Effect */
 const initMagneticButtons = () => {
-    const buttons = document.querySelectorAll('.btn-hero-primary, .btn-hero-secondary, .btn-primary, .btn-services');
+    const buttons = document.querySelectorAll('.btn-hero-primary, .btn-hero-secondary, .btn-primary, .btn-services, .btn-security, .social-icon');
 
     buttons.forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
@@ -547,4 +665,51 @@ const initThemeToggle = () => {
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
     }
+};
+
+/* 4. FAQ Accordion Logic */
+const initFAQ = () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+            });
+
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+};
+
+/* 5. WhatsApp Widget Logic */
+const initWhatsApp = () => {
+    const trigger = document.getElementById('whatsapp-trigger');
+    const close = document.getElementById('chat-close');
+    const chatBox = document.getElementById('whatsapp-chat');
+
+    if (!trigger || !chatBox) return;
+
+    trigger.addEventListener('click', () => {
+        chatBox.classList.toggle('active');
+    });
+
+    close.addEventListener('click', () => {
+        chatBox.classList.remove('active');
+    });
+
+    // Close on outside click for better UX
+    document.addEventListener('click', (e) => {
+        if (!chatBox.contains(e.target) && !trigger.contains(e.target)) {
+            chatBox.classList.remove('active');
+        }
+    });
 };
