@@ -239,6 +239,7 @@ body.light-theme .floating-header {
   font-size: inherit;
   padding: 0;
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .lang-switch:hover,

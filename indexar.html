@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أوف جي تك | هندسة المستقبل</title>
+    <link rel="icon" type="image/png" href="assets/images/Title.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://my.spline.design">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif !important;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .tagline,
+        .label,
+        .branding,
+        [class*="-title"],
+        [class*="-label"],
+        [class*="btn-"],
+        button {
+            font-family: 'Cairo', sans-serif !important;
+        }
+
+        .hero-text {
+            text-align: right;
+        }
+
+        .hero-cta {
+            justify-content: flex-start;
+        }
+
+        .stat-card.top-right {
+            right: auto;
+            left: -30px;
+        }
+
+        .stat-card.bottom-left {
+            left: auto;
+            right: -30px;
+        }
+
+        .reveal-left {
+            transform: translateX(30px);
+        }
+
+        .reveal-right {
+            transform: translateX(-30px);
+        }
+
+        .reveal-left.active,
+        .reveal-right.active {
+            transform: translateX(0);
+        }
+
+        .ceo-grid {
+            direction: rtl;
+        }
+
+        .ceo-content-area {
+            text-align: right;
+        }
+
+        .ceo-stats {
+            justify-content: flex-start;
+        }
+
+        .ceo-socials {
+            justify-content: flex-start;
+        }
+
+        .experience-badge {
+            right: auto;
+            left: -20px;
+        }
+
+        .faq-left {
+            text-align: right;
+        }
+
+        .faq-question {
+            flex-direction: row-reverse;
+            justify-content: space-between;
+        }
+
+        .contact-form-box {
+            text-align: right;
+        }
+
+        .form-group {
+            text-align: right;
+        }
+
+        .footer-intro-left {
+            text-align: right;
+        }
+
+        .footer-brand-section {
+            text-align: right;
+        }
+
+        .footer-nav-section {
+            text-align: right;
+        }
+
+        .footer-bottom-bar {
+            flex-direction: row-reverse;
+        }
+
+        .whatsapp-chat-box {
+            right: auto;
+            left: 0;
+            transform-origin: bottom left;
+        }
+
+        .whatsapp-widget {
+            right: auto;
+            left: 30px;
+        }
+
+        .back-to-top {
+            left: auto;
+            right: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-widget {
+                left: 20px;
+            }
+
+            .back-to-top {
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <div class="loader-text">أوف جي تك جاري تهيئة الأنظمة... <span id="progress">0%</span></div>
+    </div>
+
+    <!-- Floating Header -->
+    <header class="floating-header">
+        <div class="logo-area">
+            <img src="assets/images/logo.png" alt="شعار أوف جي تك" class="nav-logo">
+        </div>
+
+        <nav class="nav-links">
+            <a href="#services" class="nav-link">الخدمات</a>
+            <a href="#projects" class="nav-link">المشاريع</a>
+            <a href="#leadership" class="nav-link">القيادة</a>
+            <a href="#contact" class="nav-link">اتصل بنا</a>
+        </nav>
+
+        <div class="action-area">
+            <button class="theme-toggle" id="theme-toggle" aria-label="تبديل المظهر">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <a href="index.html" class="lang-switch">EN</a>
+            <span class="divider">/</span>
+            <a href="indexar.html" class="lang-switch active">AR</a>
+        </div>
+    </header>
+
+    <!-- Modern Hero Section -->
+    <section class="hero-section">
+        <!-- Spline Background -->
+        <iframe src='https://my.spline.design/radialglass-20RYcJn9wbsEb5QEYkazHjpb' frameborder='0' width='100%'
+            height='100%' class="spline-bg"></iframe>
+        <img src="assets/images/a3.png" alt="خلفية فاتحة" class="hero-bg-light">
+
+        <div class="hero-container container">
+            <!-- Left Column -->
+            <div class="hero-text reveal-left">
+                <span class="tagline stagger-item">بناء تكنولوجيا جاهزة للمستقبل</span>
+
+                <h1 class="stagger-item">حلول رقمية ذكية<br>تعزز نمو الأعمال</h1>
+
+                <p class="hero-desc stagger-item">
+                    تتعاون أوف جي تك مع الشركات الناشئة والمؤسسات لتصميم وتطوير وتوسيع نطاق
+                    حلول الويب والهاتف المحمول والسحابة عالية الأداء - مما يعزز الكفاءة
+                    والمشاركة والنتائج الملموسة.
+                </p>
+
+
+                <div class="hero-cta stagger-item">
+                    <a href="#contact" class="btn-hero-primary">ابدأ مشروعك <span class="arrow">←</span></a>
+                    <a href="#services" class="btn-hero-secondary">خدماتنا <span class="play-icon">▶</span></a>
+
+                </div>
+
+                <div class="social-proof stagger-item">
+                    <div class="avatars">
+                        <div class="avatar" style="background-image: url('https://i.pravatar.cc/100?img=33')"></div>
+                        <div class="avatar" style="background-image: url('https://i.pravatar.cc/100?img=47')"></div>
+                        <div class="avatar" style="background-image: url('https://i.pravatar.cc/100?img=12')"></div>
+                        <div class="avatar-count">+50</div>
+                    </div>
+                    <p class="proof-text">
+                        <strong>موثوق به من قبل أكثر من 50 عميلاً حول العالم</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="hero-image-wrapper">
+                <img src="assets/images/dashboard-hero.png" alt="واجهة لوحة تحكم أوف جي تك" class="main-image"
+                    fetchpriority="high">
+
+
+                <!-- Floating Stat: Project Delivery -->
+                <div class="stat-card top-right">
+                    <div class="icon-box">🚀</div>
+                    <div class="stat-info">
+                        <span class="stat-label">المشاريع المنجزة</span>
+                        <span class="stat-value">+120</span>
+                    </div>
+                </div>
+
+                <!-- Floating Stat: Client Growth -->
+                <div class="stat-card bottom-left">
+                    <div class="icon-box">💻</div>
+                    <div class="stat-info">
+                        <span class="stat-label">نمو العملاء</span>
+                        <span class="stat-value">+95%</span>
+
+                        <!-- Tiny SVG chart line -->
+                        <svg width="80" height="20" viewBox="0 0 80 20" fill="none" class="chart-line">
+                            <path d="M1 18C15 18 20 10 30 12C40 14 50 2 65 5C75 7 80 1 80 1" stroke="#fa6f2c"
+                                stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Brand Strip -->
+        <div class="brand-strip reveal">
+            <p class="stagger-item">تقديم حلول ذكية مدعومة بالذكاء الاصطناعي</p>
+            <div class="brand-logos stagger-item">
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Main Scroll Container -->
+    <div class="sticky-container">
+        <!-- Sticky Canvas Wrapper -->
+        <div class="canvas-wrapper">
+            <canvas id="hero-canvas"></canvas>
+        </div>
+
+        <!-- Scrollytelling Text Layers -->
+        <div class="scroll-content">
+
+            <!-- Section 0: Mission -->
+            <section class="step step-sub" data-step="0">
+                <div class="scrolly-header">
+                    <p class="subtitle">ذكاء اصطناعي • تصميم • تكنولوجيا</p>
+                    <h1>أوف جي تك</h1>
+                </div>
+                <div class="content-box center">
+                    <div class="content-box_subz">
+                        <h2>مهمتنا</h2>
+                        <p>
+                            في أوف جي تك، مهمتنا هي تمكين الشركات من خلال حلول رقمية متطورة
+                            تجمع بين الذكاء الاصطناعي والتصميم والتكنولوجيا المتقدمة. نحن نحول
+                            الأفكار إلى منتجات قابلة للتطوير تعزز الكفاءة والنمو والتأثير الحقيقي.
+                        </p>
+                    </div>
+
+                    <div class="content-box_sub">
+                        <h2>رؤيتنا</h2>
+                        <p>
+                            نحن نتصور مستقبلاً تندمج فيه التكنولوجيا بسلاسة في العمليات التجارية
+                            اليومية - مما يخلق سير عمل أكثر ذكاءً وقرارات أفضل وأنظمة رقمية
+                            مستدامة مدعومة بالابتكار.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Section 1:  -->
+            <section class="step" data-step="1">
+                <div class="content-box center">
+                    <div class="content-box_sub">
+                        <h2>ماذا نفعل</h2>
+                        <p>
+                            من المنصات المدعومة بالذكاء الاصطناعي إلى تطبيقات الويب والهاتف المحمول الحديثة،
+                            نقوم بتصميم وبناء أنظمة ذكية تحل تحديات الأعمال المعقدة بدقة.
+                        </p>
+                    </div>
+
+                    <div class="content-box_subz">
+                        <h2>خدماتنا الأساسية</h2>
+                        <p>
+                            • حلول الذكاء الاصطناعي وتعلم الآلة<br>
+                            • تطوير البرمجيات المخصصة<br>
+                            • تطوير تطبيقات الويب والهاتف المحمول<br>
+                            • تصميم واجهة وتجربة المستخدم<br>
+                            • السحابة والأتمتة و DevOps
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+
+
+            <!-- Section 2:  -->
+            <section class="step" data-step="2">
+                <div class="content-box center">
+                    <div class="content-box_subz">
+                        <h2>لماذا تختار أوف جي تك</h2>
+                        <p>
+                            نحن نجمع بين الخبرة التقنية العميقة والتفكير الإبداعي.
+                            حلولنا تركز على المستخدم، وتعتمد على الأداء، ومبنية للتوسع
+                            مع نمو عملك.
+                        </p>
+                    </div>
+                    <div class="content-box_sub">
+                        <h2>الابتكار في الجوهر</h2>
+                        <p>
+                            الابتكار ليس اختيارياً - إنه مدمج في كل ما نبنيه.
+                            من الهندسة المعمارية إلى التجربة، تم تصميم كل طبقة للتميز.
+                        </p>
+
+                    </div>
+
+                </div>
+            </section>
+
+
+
+            <!-- Section 3:  -->
+            <section class="step" data-step="3">
+                <div class="content-box center">
+                    <h2>دعنا نبني المستقبل</h2>
+                    <p>
+                        شارك مع أوف جي تك لتحويل رؤيتك إلى واقع رقمي قوي.
+                    </p>
+                    <a href="#contact" class="btn-primary" style="margin-top: 25px;">ابدأ مشروعك</a>
+                </div>
+            </section>
+
+
+
+        </div>
+
+    </div>
+
+    <!-- OFG Tech Services Section -->
+    <section class="services-section" id="services">
+
+        <div class="services-container container">
+            <!-- Section Header -->
+            <div class="services-header reveal">
+                <span class="services-label stagger-item">خدماتنا</span>
+                <h2 class="services-title stagger-item">
+                    حلول رقمية تعزز النمو — من البداية إلى النهاية
+                </h2>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="services-grid">
+
+                <!-- Card 1: Growth & Analytics -->
+                <div class="service-card" data-card="1">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">الذكاء الاصطناعي</h3>
+                    <p class="card-desc">حلول ذكية مدعومة بالذكاء الاصطناعي تعمل على أتمتة العمليات وفتح رؤى الأعمال.
+                    </p>
+                    <ul class="card-features">
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            روبوتات الدردشة والمساعدين الافتراضيين
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            تحليل البيانات والنماذج التنبؤية
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            تكاملات الذكاء الاصطناعي المخصصة
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Product Strategy -->
+                <div class="service-card" data-card="2">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">تصميم وتطوير المواقع</h3>
+                    <p class="card-desc">مواقع ويب عالية الأداء مصممة للسرعة والأمان والتحويلات.</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            مواقع أعمال مخصصة
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            حلول التجارة الإلكترونية و CMS
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            تصميم مستجيب وصديق لمحركات البحث
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Product Design -->
+                <div class="service-card" data-card="3">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">تطوير تطبيقات الهاتف</h3>
+                    <p class="card-desc">تطبيقات أندرويد و iOS قابلة للتطوير ومصممة خصيصاً لأهداف عملك.</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            تطبيقات أندرويد و iOS
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            تطوير بواسطة Flutter و React Native
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            تكامل آمن مع الواجهة الخلفية
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Frontend Engineering -->
+                <div class="service-card" data-card="4">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">حلول البرمجيات و ERP</h3>
+                    <p class="card-desc">أنظمة برمجية مخصصة تعمل على أتمتة العمليات وتحسين الكفاءة.</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            أنظمة ERP و CRM
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            برمجيات المخزون والفواتير
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            لوحات تحكم وتقارير مخصصة
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: Growth & Analytics -->
+                <div class="service-card" data-card="5">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">التسويق الرقمي والعلامات التجارية</h3>
+                    <p class="card-desc">استراتيجيات تسويق تعتمد على البيانات تزيد من الرؤية والعملاء المحتملين.</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            SEO وإعلانات جوجل
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            التسويق عبر وسائل التواصل الاجتماعي
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            هوية العلامة التجارية والتصاميم
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 6: Product Strategy -->
+                <div class="service-card" data-card="6">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                            <path d="M2 2l7.586 7.586"></path>
+                            <circle cx="11" cy="11" r="2"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">تصميم واجهة وتجربة المستخدم</h3>
+                    <p class="card-desc">واجهات نظيفة وبسيطة مصممة لإشراك المستخدمين وتحفيز العمل.</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            تصميم واجهة الموقع والتطبيقات
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            رحلة المستخدم والمخططات الهيكلية
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            تخطيطات تركز على التحويل
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 7: Product Design -->
+                <div class="service-card" data-card="7">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">خدمات تكنولوجيا المعلومات والدعم</h3>
+                    <p class="card-desc">حلول تقنية موثوقة للحفاظ على أنظمتك آمنة ومستقرة وقابلة للتطوير.</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            إدارة الخوادم والاستضافة
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            الأمان والنسخ الاحتياطي
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            الصيانة والدعم المستمر
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 8: Frontend Engineering -->
+                <div class="service-card" data-card="8">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">حلول السحابة والاستضافة</h3>
+                    <p class="card-desc">بنية تحتية سحابية آمنة وقابلة للتطوير مصممة للأداء والموثوقية.</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            استضافة سحابية وإعداد الخوادم
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            إدارة AWS و Azure و VPS
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            الأمان والنسخ الاحتياطي ومراقبة وقت التشغيل
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <!-- Optional CTA Button -->
+            <div class="services-cta">
+                <a href="#contact" class="btn-services">ابدأ مشروعك ←</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFG Tech Projects Section -->
+    <section class="projects-section" id="projects">
+        <div class="projects-sticky-wrapper">
+            <div class="projects-header container reveal">
+                <div class="projects-header-left">
+                    <span class="tagline">أعمال مختارة</span>
+                    <h2 class="projects-title">
+                        مجموعة مختارة من مشاريع أوف جي تك،<br>
+                        تم هندستها وشحنها على نطاق واسع
+                    </h2>
+                </div>
+
+                <div class="projects-header-right">
+                    <p class="projects-desc">
+                        هذا عرض مختار لأكثر أعمال أوف جي تك تأثيراً.
+                        يمثل كل مشروع حلولاً واقعية تم تسليمها لبيئات الإنتاج -
+                        تشمل منصات SaaS، وأنظمة المؤسسات، والمنتجات الرقمية التي تركز على الأداء.
+                        لا يتم عرض كل مشروع، فقط تلك التي تعكس بشكل أفضل عمقنا الهندسي ومعايير التصميم لدينا.
+                    </p>
+
+                    <div class="projects-actions">
+                        <a href="#case-studies" class="btn-case-studies">
+                            <span>عرض دراسات الحالة المختارة</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="projects-track-container">
+                <div class="projects-track" id="projects-track">
+                    <!-- Project Card 1 -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="assets/images/Project/PI1.png" alt="مشروع 1" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">تطبيق هاتف</span>
+                            <h3 class="project-name">ZWARX</h3>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="assets/images/Project/PI3.png" alt="مشروع 2" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">منصة ويب</span>
+                            <h3 class="project-name">NAWAHI Logistics</h3>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="assets/images/Project/PI8.png" alt="مشروع 3" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">تطبيق ويب طبي</span>
+                            <h3 class="project-name">BEHIGHCARE</h3>
+                        </div>
+                    </div>
+                    <!-- Project Card 4 -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="assets/images/Project/PI4.png" alt="مشروع 4" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">منصة ويب</span>
+                            <h3 class="project-name">PANORAMA Rent a car</h3>
+                        </div>
+                    </div>
+                    <!-- Project Card 5 -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="assets/images/Project/PI6.png" alt="مشروع 5" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">منصة ويب</span>
+                            <h3 class="project-name">NATMCO</h3>
+                        </div>
+                    </div>
+                    <!-- Project Card 6 -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="assets/images/Project/PI5.png" alt="مشروع 6" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">تطبيق هاتف</span>
+                            <h3 class="project-name">DRK CARE</h3>
+                        </div>
+                    </div>
+                    <!-- Project Card 7 -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="assets/images/Project/PI2.png" alt="مشروع 7" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">موقع طبي</span>
+                            <h3 class="project-name">DRK</h3>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 8 -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="assets/images/Project/PI7.png" alt="مشروع 8" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">منصة ويب</span>
+                            <h3 class="project-name">SUHUL NAJID</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Draw anima -->
+    <section class="security-section" id="security">
+        <canvas id="flow-canvas"></canvas>
+        <div class="security-content reveal">
+            <h2 class="security-title">
+                قابل للتطوير. <span class="gradient-text-purple">آمن.</span><br>
+                بني من أجل <span class="gradient-text-purple">مستقبل التكنولوجيا.</span>
+            </h2>
+            <a href="#" class="btn-security">
+                ابدأ مشروعك
+            </a>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="ceo-section" id="leadership">
+        <div class="container ceo-container">
+            <div class="ceo-grid">
+                <div class="ceo-image-area reveal-left">
+                    <div class="ceo-image-wrapper">
+                        <div class="ceo-glow"></div>
+                        <img src="assets/images/CEO.png" alt="عبد المجيد الرحيمي - المؤسس والرئيس التنفيذي"
+                            class="ceo-img" loading="lazy" decoding="async">
+                        <div class="experience-badge">
+                            <span class="exp-num">+10</span>
+                            <span class="exp-text">سنوات من<br>التميز</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ceo-content-area reveal-right">
+                    <span class="tagline stagger-item">صاحب الرؤية</span>
+                    <h2 class="ceo-name stagger-item">عبد المجيد الرحيمي</h2>
+                    <p class="ceo-title stagger-item">المؤسس والرئيس التنفيذي</p>
+
+                    <div class="ceo-quote-box stagger-item">
+                        <svg class="quote-icon" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2v4l-4 2">
+                            </path>
+                            <path d="M13 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2v4l-4 2">
+                            </path>
+                        </svg>
+                        <p class="ceo-quote">
+                            "في أوف جي تك، نحن لا نبني البرمجيات فحسب؛ بل نهندس تجارب رقمية تحويلية تعيد تعريف
+                            كيفية تفاعل الشركات مع المستقبل. كل سطر من الأكواد نكتبه هو خطوة نحو عالم أكثر ذكاءً
+                            وترابطاً."
+                        </p>
+                    </div>
+
+                    <div class="ceo-stats stagger-item">
+                        <div class="ceo-stat-item">
+                            <span class="stat-n">+150</span>
+                            <span class="stat-l">مشروع عالمي</span>
+                        </div>
+                        <div class="ceo-stat-item">
+                            <span class="stat-n">100%</span>
+                            <span class="stat-l">نجاح العملاء</span>
+                        </div>
+                    </div>
+
+                    <div class="ceo-socials stagger-item">
+                        <a href="#" class="ceo-social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" class="ceo-social-link" aria-label="X">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" class="ceo-social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Trusted Clients Section -->
+    <section class="trusted-section" id="clients">
+        <div class="trusted-container container">
+            <div class="trusted-header reveal">
+                <span class="trusted-label stagger-item">عملائنا</span>
+                <h2 class="trusted-title stagger-item">موثوق به من قبل العلامات التجارية العالمية والنامية</h2>
+                <p class="trusted-subtitle stagger-item">
+                    تقديم حلول تقنية موثوقة للشركات الناشئة والمؤسسات وقادة الصناعة في جميع أنحاء العالم.
+                </p>
+
+            </div>
+
+            <div class="logo-carousel scale-in">
+                <div class="logo-track" id="logo-track">
+                    <!-- سيتم حقن الشعارات عبر JS لمنطق "التحميل التلقائي" الأنظف -->
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- OFG Tech FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container faq-container">
+            <div class="faq-left reveal-left">
+                <p class="tagline">الأسئلة</p>
+                <h2 class="faq-title">الأسئلة <span class="gradient-text-purple">الشائعة</span></h2>
+                <p class="faq-subtitle">كل ما تحتاج لمعرفته حول بدء مشروعك مع أوف جي تك.</p>
+
+                <div class="faq-cta-box glass-card scale-in">
+                    <h4>لا تزال لديك أسئلة؟</h4>
+                    <p>لا تجد ما تبحث عنه؟ تواصل مع خبراء الاستراتيجية لدينا.</p>
+                    <a href="#contact" class="btn-hero-primary">دعم الاتصال</a>
+                </div>
+            </div>
+
+            <div class="faq-right reveal-right">
+                <div class="faq-accordion">
+                    <div class="faq-item active">
+                        <div class="faq-question">
+                            <span>ما هي الخدمات التي تقدمها أوف جي تك؟</span>
+                            <div class="faq-icon"></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>نحن نقدم خدمات الاستراتيجية والتصميم والهندسة من البداية إلى النهاية. تغطي خبرتنا SaaS
+                                المدعوم بالذكاء الاصطناعي،
+                                والتجارب الرقمية الراقية، وحلول برمجيات المؤسسات المصممة للأداء.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>كم من الوقت يستغرق المشروع النموذجي؟</span>
+                            <div class="faq-icon"></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>تختلف الجداول الزمنية للمشروع بناءً على النطاق. يستغرق النموذج الأولي السريع عادةً من 2
+                                إلى 4 أسابيع، بينما يمتد
+                                إطلاق منتج كامل النطاق بشكل عام من شهرين إلى 4 أشهر من التطوير المكثف والتكرار.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>هل تقنيتكم مبنية للتوسع؟</span>
+                            <div class="faq-icon"></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>القابلية للتوسع هي في صميم عملنا. نحن نبني باستخدام هياكل سحابية أصلية تتوسع تلقائياً
+                                للتعامل مع ملايين
+                                المستخدمين، مما يضمن بقاء منتجك سريعاً وموثوقاً مع نموك.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>هل تقدمون دعماً بعد الإطلاق؟</span>
+                            <div class="faq-icon"></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>نعم، نحن نقدم حزم دعم مرنة تشمل مراقبة الأداء وتحديثات الأمان وتحسينات الميزات لضمان بقاء
+                                تقنيتك في طليعة التميز.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>كيف نبدأ مشروعاً؟</span>
+                            <div class="faq-icon"></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>البدء بسيط. انقر فوق الزر "ابدأ مشروعك" لتحديد موعد مكالمة استكشافية، حيث سنناقش رؤيتك
+                                ونرسم خارطة طريق للنجاح.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section class="contact-location-section" id="contact">
+        <div class="container">
+            <div class="contact-location-grid" style="align-items: center; gap: 40px;">
+                <!-- Left: Contact Form -->
+                <div class="contact-form-column reveal-left">
+                    <div class="contact-form-box">
+                        <span class="tagline">تواصل معنا</span>
+                        <h2 class="contact-form-title">لنبدأ مشروعك</h2>
+                        <div class="contact-direct-links">
+                            <a href="mailto:info@ofgtech.com" class="direct-link-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <span>info@ofgtech.com</span>
+                            </a>
+                        </div>
+
+                        <form id="project-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">الاسم الكامل</label>
+                                    <input type="text" id="name" class="form-input" placeholder="مثال: جون دو" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="email">عنوان البريد الإلكتروني</label>
+                                    <input type="email" id="email" class="form-input"
+                                        placeholder="مثال: john@example.com" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="details">تفاصيل المشروع</label>
+                                <textarea id="details" class="form-textarea"
+                                    placeholder="أخبرنا عن مشروعك وأهدافك والجدول الزمني..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-security btn-submit">
+                                <span>إرسال الرسالة</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right: Map & Locations -->
+                <div class="map-column reveal-right">
+                    <img src="assets/images/Map.png" alt="مواقع عالمية" class="map-image">
+
+                    <!-- Geographical Markers -->
+                    <div class="map-markers">
+                        <!-- London Marker -->
+                        <div class="map-pin-wrapper london-pin" style="top: 25%; left: 47.5%;">
+                            <div class="location-dot"></div>
+                            <div class="location-card mini-card">
+                                <h4 class="address-city">لندن، المملكة المتحدة</h4>
+                                <p class="address-detail">منطقة الأعمال المركزية</p>
+                            </div>
+                        </div>
+
+                        <!-- Dammam Marker -->
+                        <div class="map-pin-wrapper dammam-pin" style="top: 48%; left: 63%;">
+                            <div class="location-dot"></div>
+                            <div class="location-card mini-card">
+                                <h4 class="address-city">الدمام، السعودية</h4>
+                                <p class="address-detail">6454 - حي الشفاء, 3106</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-card-wrapper container reveal">
+            <div class="footer-card">
+                <!-- Big Background Branding -->
+                <div class="footer-bg-branding">أوف جي تك</div>
+
+                <div class="footer-top-intro container reveal">
+                    <div class="footer-intro-left">
+                        <h3 class="footer-intro-title">جاهز لبناء الشيء<br><span class="gradient-text-orange">الكبير
+                                القادم؟</span></h3>
+                    </div>
+                    <div class="footer-intro-right">
+                        <a href="#contact" class="btn-security">
+                            <span>ابدأ الآن</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-main">
+                    <!-- Left side: Brand and Subscribe -->
+                    <div class="footer-brand-section reveal-left">
+                        <div class="footer-logo-box stagger-item">
+                            <img src="assets/images/logo.png" alt="شعار أوف جي تك" class="footer-logo">
+                        </div>
+                        <p class="footer-description stagger-item">
+                            نحن نهندس منتجات رقمية عالمية المستوى وحلولاً مدعومة بالذكاء الاصطناعي للعلامات التجارية
+                            الطموحة عالمياً.
+                        </p>
+
+                        <form class="footer-subscribe stagger-item">
+                            <label class="subscribe-label">ابق على اطلاع</label>
+                            <div class="subscribe-input-group">
+                                <input type="email" placeholder="أدخل بريدك الإلكتروني" class="subscribe-input">
+                                <button type="submit" class="subscribe-btn">
+                                    <span>انضم</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right side: Navigation Links -->
+                    <div class="footer-nav-section reveal-right">
+                        <div class="footer-col stagger-item">
+                            <h4 class="footer-title">القدرات</h4>
+                            <nav class="footer-nav">
+                                <a href="#services" class="footer-link">الاستراتيجية والتصميم</a>
+                                <a href="#services" class="footer-link">الهندسة</a>
+                                <a href="#services" class="footer-link">الذكاء الاصطناعي والأتمتة</a>
+                                <a href="#services" class="footer-link">حلول السحابة</a>
+                            </nav>
+                        </div>
+                        <div class="footer-col stagger-item">
+                            <h4 class="footer-title">استكشف</h4>
+                            <nav class="footer-nav">
+                                <a href="#projects" class="footer-link">أعمال مختارة</a>
+                                <a href="#security" class="footer-link">تدفق الأمان</a>
+                                <a href="#faq" class="footer-link">الأسئلة الشائعة</a>
+                                <a href="#contact" class="footer-link">ابدأ مشروعاً</a>
+                            </nav>
+                        </div>
+                        <div class="footer-col stagger-item">
+                            <h4 class="footer-title">تواصل</h4>
+                            <nav class="footer-nav">
+                                <a href="https://wa.me/966536572229" target="_blank" class="footer-link">دعم واتساب</a>
+                                <a href="mailto:info@ofgtech.com" class="footer-link">راسلنا بريدياً</a>
+                                <a href="#OFG Tech" class="footer-link">لينكد إن</a>
+                                <a href="#OFG Tech" class="footer-link">إكس / تويتر</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-divider stagger-item"></div>
+
+                <div class="footer-bottom-bar reveal">
+                    <div class="footer-bottom-left">
+                        <p class="footer-copyright stagger-item">&copy; 2026 أوف جي تك. جميع الحقوق محفوظة.</p>
+                    </div>
+                    <div class="footer-social-icons stagger-item">
+                        <a href="#OFG Tech" class="social-icon" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#OFG Tech" class="social-icon" aria-label="Twitter">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#OFG Tech" class="social-icon" aria-label="LinkedIn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Chat Widget -->
+    <div class="whatsapp-widget">
+        <div class="whatsapp-chat-box" id="whatsapp-chat">
+            <div class="chat-header">
+                <div class="header-info">
+                    <img src="assets/images/of1.png" alt="دعم أوف جي" class="bot-logo">
+                    <div class="bot-details">
+                        <p class="bot-name">دعم أوف جي</p>
+                        <p class="bot-status">يرد عادةً في الحال</p>
+                    </div>
+                </div>
+                <button class="chat-close" id="chat-close">&times;</button>
+            </div>
+            <div class="chat-body">
+                <div class="chat-message bot">
+                    <p>مرحباً! 👋<br>كيف يمكننا مساعدتك اليوم في مشروعك؟</p>
+                    <span class="message-time">الآن</span>
+                </div>
+            </div>
+            <div class="chat-footer">
+                <a href="https://wa.me/966536572229" target="_blank" class="whatsapp-btn">
+                    <span>ابدأ الدردشة</span>
+                </a>
+            </div>
+        </div>
+        <button class="whatsapp-trigger" id="whatsapp-trigger" aria-label="افتح دردشة واتساب">
+            <img src="assets/images/whatsapp.png" alt="واتساب" class="icon-whatsapp">
+        </button>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="العودة للأعلى">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
