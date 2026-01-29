@@ -10,12 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://my.spline.design">
     <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        :root {
+            --font-main: 'Tajawal', sans-serif;
+            --font-heading: 'Tajawal', sans-serif;
+            --font-display: 'Tajawal', sans-serif;
+        }
+
         body {
-            font-family: 'Cairo', sans-serif !important;
+            font-family: 'Tajawal', sans-serif !important;
         }
 
         h1,
@@ -30,8 +36,11 @@
         [class*="-title"],
         [class*="-label"],
         [class*="btn-"],
-        button {
-            font-family: 'Cairo', sans-serif !important;
+        button,
+        input,
+        textarea,
+        select {
+            font-family: 'Tajawal', sans-serif !important;
         }
 
         .hero-text {
@@ -115,10 +124,6 @@
             text-align: right;
         }
 
-        .footer-bottom-bar {
-            flex-direction: row-reverse;
-        }
-
         .whatsapp-chat-box {
             right: auto;
             left: 0;
@@ -133,6 +138,31 @@
         .back-to-top {
             left: auto;
             right: 30px;
+        }
+
+        .scroll-content {
+            right: unset !important;
+            left: 0 !important;
+        }
+
+        .services-header {
+            text-align: unset !important;
+        }
+
+        @media screen and (min-device-width: 300px) and (max-device-width: 600px) {
+            .contact-location-grid {
+                padding: 20px;
+            }
+
+            .footer-link {
+                width: unset !important;
+                text-align: center !important;
+            }
+
+            .footer-title,
+            .footer-brand-section {
+                text-align: center !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -739,7 +769,7 @@
 
 
 
-            <div class="projects-track-container">
+            <div class="projects-track-container" dir="ltr">
                 <div class="projects-track" id="projects-track">
                     <!-- Project Card 1 -->
                     <div class="project-card">
@@ -936,7 +966,7 @@
 
             </div>
 
-            <div class="logo-carousel scale-in">
+            <div class="logo-carousel scale-in" dir="ltr">
                 <div class="logo-track" id="logo-track">
                     <!-- سيتم حقن الشعارات عبر JS لمنطق "التحميل التلقائي" الأنظف -->
                 </div>
@@ -964,8 +994,9 @@
                 <div class="faq-accordion">
                     <div class="faq-item active">
                         <div class="faq-question">
-                            <span>ما هي الخدمات التي تقدمها أوف جي تك؟</span>
                             <div class="faq-icon"></div>
+                            <span>ما هي الخدمات التي تقدمها أوف جي تك؟</span>
+
                         </div>
                         <div class="faq-answer">
                             <p>نحن نقدم خدمات الاستراتيجية والتصميم والهندسة من البداية إلى النهاية. تغطي خبرتنا SaaS
@@ -976,8 +1007,9 @@
 
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>كم من الوقت يستغرق المشروع النموذجي؟</span>
                             <div class="faq-icon"></div>
+                            <span>كم من الوقت يستغرق المشروع النموذجي؟</span>
+
                         </div>
                         <div class="faq-answer">
                             <p>تختلف الجداول الزمنية للمشروع بناءً على النطاق. يستغرق النموذج الأولي السريع عادةً من 2
@@ -988,8 +1020,9 @@
 
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>هل تقنيتكم مبنية للتوسع؟</span>
                             <div class="faq-icon"></div>
+                            <span>هل تقنيتكم مبنية للتوسع؟</span>
+
                         </div>
                         <div class="faq-answer">
                             <p>القابلية للتوسع هي في صميم عملنا. نحن نبني باستخدام هياكل سحابية أصلية تتوسع تلقائياً
@@ -1000,8 +1033,9 @@
 
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>هل تقدمون دعماً بعد الإطلاق؟</span>
                             <div class="faq-icon"></div>
+                            <span>هل تقدمون دعماً بعد الإطلاق؟</span>
+
                         </div>
                         <div class="faq-answer">
                             <p>نعم، نحن نقدم حزم دعم مرنة تشمل مراقبة الأداء وتحديثات الأمان وتحسينات الميزات لضمان بقاء
@@ -1011,8 +1045,9 @@
 
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>كيف نبدأ مشروعاً؟</span>
                             <div class="faq-icon"></div>
+                            <span>كيف نبدأ مشروعاً؟</span>
+
                         </div>
                         <div class="faq-answer">
                             <p>البدء بسيط. انقر فوق الزر "ابدأ مشروعك" لتحديد موعد مكالمة استكشافية، حيث سنناقش رؤيتك

@@ -1868,12 +1868,12 @@ body.light-theme .project-card {
 }
 
 .content-box_sub {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: left;
 }
 
 .content-box_subz {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: right;
 }
 
@@ -2578,6 +2578,14 @@ body.light-theme .form-textarea {
   .contact-location-grid {
     padding: 20px;
   }
+
+  .footer-link {
+    width: unset !important;
+  }
+
+  .footer-main {
+    text-align: center !important;
+  }
 }
 
 .map-image {
@@ -2962,7 +2970,7 @@ body.light-theme .map-image {
 
 .footer-copyright {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.4);
+  /* color: rgba(255, 255, 255, 0.4); */
 }
 
 .footer-social-icons {
@@ -3534,7 +3542,7 @@ body.light-theme .gradient-text-purple {
   }
 
   .security-content .btn-security {
-    top: 85%;
+    top: 83%;
     width: 80%;
     max-width: 300px;
     text-align: center;
